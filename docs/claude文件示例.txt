@@ -1,0 +1,148 @@
+请参考以下示例文档的结构、格式和详细程度，重新为我的 Java Spring Cloud 项目生成 CLAUDE.md。
+
+请务必做到：
+1. **严格模仿结构**：保留“项目概述”、“技术栈”、“常用命令”（分类）、“代码风格”、“目录结构”、“开发规范”、“注意事项”、“常见问题”这些大标题。
+2. **内容替换**：将示例中的 React/Node.js/Prisma 内容，替换为我项目的 Java/Spring Cloud/Maven/MyBatis 内容。
+3. **保持清晰度**：像示例一样，使用列表和代码块，保持排版整洁。
+
+---
+
+### 参考示例（TaskFlow）：
+
+# TaskFlow 项目配置
+
+## 项目概述
+TaskFlow 是一个基于 React + Node.js 的任务管理系统，支持团队协作、任务分配、进度追踪等功能。
+
+## 技术栈
+- 前端：React 18 + TypeScript + Vite + TailwindCSS
+- 后端：Node.js + Express + TypeScript
+- 数据库：PostgreSQL + Prisma ORM
+- 测试：Jest + React Testing Library
+
+## 常用命令
+
+### 开发
+- `pnpm dev` - 同时启动前后端开发服务器
+- `pnpm dev:client` - 仅启动前端（端口 5173）
+- `pnpm dev:server` - 仅启动后端（端口 3000）
+
+### 构建
+- `pnpm build` - 构建前后端
+- `pnpm build:client` - 仅构建前端
+- `pnpm build:server` - 仅构建后端
+
+### 测试
+- `pnpm test` - 运行所有测试
+- `pnpm test:client` - 运行前端测试
+- `pnpm test:server` - 运行后端测试
+- `pnpm test:e2e` - 运行端到端测试
+
+### 数据库
+- `pnpm db:migrate` - 运行数据库迁移
+- `pnpm db:seed` - 填充测试数据
+- `pnpm db:studio` - 打开 Prisma Studio
+
+### 代码质量
+- `pnpm lint` - 运行 ESLint
+- `pnpm typecheck` - 运行类型检查
+- `pnpm format` - 运行 Prettier 格式化
+
+## 代码风格
+
+### TypeScript
+- 严格模式开启，不允许 any 类型
+- 优先使用 interface 定义对象类型
+- 使用 type 定义联合类型和工具类型
+- 函数返回值必须显式声明类型
+
+### React
+- 使用函数组件 + Hooks，不使用类组件
+- 组件 props 使用 interface 定义
+- 状态管理使用 Zustand
+- 表单处理使用 React Hook Form + Zod
+
+### API 设计
+- RESTful 风格
+- 响应格式：`{ code: number, data: T, message: string }`
+- 错误码：200 成功，400 参数错误，401 未授权，500 服务器错误
+
+## 目录结构
+
+taskflow/
+├── client/                 # 前端代码
+│   ├── src/
+│   │   ├── components/     # 通用组件
+│   │   ├── features/       # 功能模块（按业务划分）
+│   │   ├── hooks/          # 自定义 Hooks
+│   │   ├── lib/            # 第三方库封装
+│   │   ├── stores/         # Zustand stores
+│   │   └── types/          # 类型定义
+│   └── tests/              # 前端测试
+├── server/                 # 后端代码
+│   ├── src/
+│   │   ├── controllers/    # 控制器
+│   │   ├── services/       # 业务逻辑
+│   │   ├── middlewares/    # 中间件
+│   │   ├── routes/         # 路由定义
+│   │   └── utils/          # 工具函数
+│   └── tests/              # 后端测试
+├── prisma/                 # Prisma 配置和迁移
+└── e2e/                    # 端到端测试
+
+## 开发规范
+
+### Git 工作流
+- 主分支：main（生产）、develop（开发）
+- 功能分支：feature/xxx
+- 修复分支：fix/xxx
+- 提交前必须通过 lint 和 typecheck
+
+### 提交信息格式
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+
+type 可选值：
+- feat: 新功能
+- fix: 修复 bug
+- docs: 文档更新
+- style: 代码格式（不影响功能）
+- refactor: 重构
+- test: 测试相关
+- chore: 构建/工具相关
+
+### Code Review 要求
+- 每个 PR 至少需要一个 approve
+- PR 标题格式与提交信息一致
+- 必须关联对应的 Issue
+
+## 注意事项
+
+### 环境变量
+- 前端环境变量以 `VITE_` 开头
+- 后端环境变量在 `.env` 文件中配置
+- 敏感信息不要提交到代码库
+
+### 数据库操作
+- 所有数据库操作通过 Prisma 进行
+- 复杂查询使用 Prisma 的 raw query
+- 迁移文件不要手动修改
+
+### 测试要求
+- 新功能必须有对应的单元测试
+- 核心业务逻辑测试覆盖率 > 80%
+- API 接口必须有集成测试
+
+## 常见问题
+
+### Q: 启动报错 "Cannot find module"
+A: 运行 `pnpm install` 重新安装依赖
+
+### Q: 数据库连接失败
+A: 检查 `.env` 中的 `DATABASE_URL` 配置，确保 PostgreSQL 服务已启动
+
+### Q: TypeScript 类型错误
+A: 运行 `pnpm typecheck` 查看详细错误，确保类型定义正确
