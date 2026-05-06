@@ -1,0 +1,23 @@
+server:
+  port: 9966
+  servlet:
+    context-path: /kefu
+
+spring:
+  application:
+    name: container-kefu
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 123.249.79.51:8848
+      config:
+        server-addr: 123.249.79.51:8848
+        file-extension: yaml
+        group: CONTAINER_GROUP
+        namespace: c5185dbc-6bf6-4fa2-afe7-15b12bc08ae1
+
+logging:
+  level:
+    root: info

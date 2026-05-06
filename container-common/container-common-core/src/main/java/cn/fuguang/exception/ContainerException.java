@@ -46,6 +46,10 @@ public class ContainerException extends RuntimeException {
 
     public static final ContainerException CUSTOMER_AUTH_ERROR = new ContainerException("100016","用户认证异常");
 
+    public static final ContainerException LLM_API_ERROR = new ContainerException("100017","LLM API调用异常");
+
+    public static final ContainerException LLM_EMBEDDING_ERROR = new ContainerException("100018","向量化异常");
+
     public static final ContainerException SYSTEM_ERROR = new ContainerException("199999","系统异常");
 
 

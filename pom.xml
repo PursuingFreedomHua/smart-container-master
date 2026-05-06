@@ -17,6 +17,7 @@
         <module>container-communicate</module>
         <module>container-common</module>
         <module>container-api</module>
+        <module>container-kefu</module>
     </modules>
 
     <packaging>pom</packaging>

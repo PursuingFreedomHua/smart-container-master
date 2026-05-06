@@ -16,6 +16,7 @@
         <module name="container-common-redis" />
         <module name="container-device" />
         <module name="container-manager" />
+        <module name="container-kefu" />
       </profile>
     </annotationProcessing>
   </component>

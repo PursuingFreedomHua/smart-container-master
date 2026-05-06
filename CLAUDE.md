@@ -4,6 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 # Smart Container 项目配置
 
+## 语言要求
+- 所有自然语言回复使用中文
+- 技术术语保留英文（如 Spring Boot、Netty、Redis、LangChain、LangGraph、RAG、LLM 等）
+- 生成代码时必须带中文注释
+- 代码注释必须使用中文
+- 代码中的变量名、类名使用英文（遵循 Java 命名规范）
+
 ## 项目概述
 Smart Container 是一个基于 Spring Cloud Alibaba 的智能货柜/售货机 IoT 管理系统，支持设备管理、订单处理、支付集成、IoT设备通信等功能。
 
