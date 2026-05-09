@@ -80,12 +80,13 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
     public void storeChunks(List<KnowledgeChunkBean> chunks) {
         try {
             for (KnowledgeChunkBean chunk : chunks) {
-                // 写入 MySQL
-                String vectorJson = JSON.toJSONString(
-                        Arrays.stream(chunk.getVector())
-                                .mapToDouble(f -> (double) f)
-                                .toArray()
-                );
+                // 写入 MySQL（Java 8 不支持 float[] 的 stream，手动转换）
+                float[] vec = chunk.getVector();
+                double[] doubleVec = new double[vec.length];
+                for (int i = 0; i < vec.length; i++) {
+                    doubleVec[i] = (double) vec[i];
+                }
+                String vectorJson = JSON.toJSONString(doubleVec);
                 String metadataJson = chunk.getMetadata() != null
                         ? JSON.toJSONString(chunk.getMetadata()) : null;
 
