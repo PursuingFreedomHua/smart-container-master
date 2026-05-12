@@ -1,6 +1,7 @@
 # =====================  Claude Code =====================
 .claude/
 .skills/
+CLAUDE_REVIEWER.md
 
 # =====================  IDE ============================
 # IntelliJ IDEA
