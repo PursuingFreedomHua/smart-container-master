@@ -1,0 +1,203 @@
+/**
+ * 常见问题页（FAQ）- WXSS
+ * 样式从 FAQPage.tsx + Tailwind CSS 1:1 转换
+ * 尺寸转换：1px = 2rpx
+ */
+
+/* ========== 容器 ========== */
+.faq-container {
+  height: 100vh;
+  height: calc(100vh - 88rpx);
+  background-color: #F5F7FA;
+  overflow-y: auto;
+}
+
+/* ========== 搜索框 ========== */
+/* 对应：bg-card p-4 mb-4 shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] */
+.search-section {
+  background-color: #FFFFFF;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+/* 对应：relative */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* 对应：Search icon absolute left-3.5 top-1/2 text-text-tertiary */
+.search-icon {
+  position: absolute;
+  left: 28rpx;
+  z-index: 1;
+  font-size: 32rpx;
+  color: #86909C;
+}
+
+/* 对应：w-full pl-10 pr-4 py-2.5 bg-input-background border border-border rounded-xl text-[14px] */
+.search-input {
+  width: 100%;
+  height: 80rpx;
+  padding-left: 80rpx;
+  padding-right: 32rpx;
+  background-color: #F7F8FA;
+  border: 2rpx solid #E5E6EB;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #1D2129;
+  box-sizing: border-box;
+}
+
+.search-placeholder {
+  color: #86909C;
+}
+
+/* ========== FAQ 分类 ========== */
+.faq-category {
+  margin-bottom: 32rpx;
+}
+
+/* 分类标题 */
+/* 对应：bg-muted px-4 py-2.5 border-y border-border */
+.category-header {
+  background-color: #F2F3F5;
+  padding: 20rpx 32rpx;
+  border-top: 2rpx solid #E5E6EB;
+  border-bottom: 2rpx solid #E5E6EB;
+}
+
+/* 对应：text-[13px] font-semibold text-text-secondary */
+.category-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #4E5969;
+}
+
+/* 问题列表容器 */
+.category-body {
+  background-color: #FFFFFF;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+/* 问题项 */
+.faq-item {
+  border-bottom: 2rpx solid #E5E6EB;
+}
+
+.faq-item-last {
+  border-bottom: none;
+}
+
+/* 问题按钮 */
+/* 对应：w-full px-4 py-3.5 flex items-center justify-between text-left hover:bg-secondary/50 */
+.faq-question-btn {
+  width: 100%;
+  padding: 28rpx 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faq-question-btn:active {
+  background-color: rgba(250, 250, 250, 0.5);
+}
+
+/* 对应：text-[14px] text-text-primary font-medium pr-4 */
+.faq-question-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1D2129;
+  font-weight: 500;
+  padding-right: 32rpx;
+}
+
+/* 箭头图标（替代 ChevronDown） */
+/* 对应：text-text-tertiary transition-transform duration-200 flex-shrink-0 */
+.faq-arrow {
+  font-size: 28rpx;
+  color: #86909C;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+/* 展开时旋转180度 */
+.faq-arrow-expanded {
+  transform: rotate(180deg);
+}
+
+/* 答案区域 */
+/* 对应：px-4 pb-4 text-[13px] text-text-secondary leading-5 whitespace-pre-line bg-secondary/30 */
+.faq-answer-area {
+  padding: 0 32rpx 32rpx;
+  background-color: rgba(250, 250, 250, 0.3);
+}
+
+.faq-answer-text {
+  font-size: 26rpx;
+  color: #4E5969;
+  line-height: 40rpx;
+  white-space: pre-line;
+}
+
+/* ========== 无结果 ========== */
+.no-result {
+  padding: 80rpx 32rpx;
+  text-align: center;
+}
+
+.no-result-text {
+  font-size: 28rpx;
+  color: #86909C;
+}
+
+/* ========== 联系客服 ========== */
+/* 对应：bg-card p-5 mx-4 mb-4 rounded-xl text-center shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] */
+.contact-section {
+  background-color: #FFFFFF;
+  padding: 40rpx;
+  margin: 0 32rpx 60rpx;
+  border-radius: 24rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+/* 对应：text-[14px] text-text-secondary mb-3 */
+.contact-text {
+  font-size: 28rpx;
+  color: #4E5969;
+  margin-bottom: 24rpx;
+  display: block;
+}
+
+/* 对应：inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-primary-foreground rounded-xl text-[14px] font-medium shadow-[0_4px_12px_0_rgba(22,119,255,0.25)] */
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  padding: 20rpx 48rpx;
+  background-color: #1677FF;
+  color: #FFFFFF;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  box-shadow: 0 8rpx 24rpx 0 rgba(22, 119, 255, 0.25);
+  border: none;
+}
+
+.contact-btn:active {
+  transform: scale(0.95);
+}
+
+.contact-btn-icon {
+  font-size: 28rpx;
+}
+
+.contact-btn-text {
+  color: #FFFFFF;
+  font-size: 28rpx;
+}

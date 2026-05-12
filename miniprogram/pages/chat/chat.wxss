@@ -1,0 +1,319 @@
+/**
+ * 智能客服聊天页 - WXSS
+ * 样式从 ChatPage.tsx + Tailwind CSS 1:1 转换
+ * 尺寸转换：1px = 2rpx
+ */
+
+/* ========== 容器 ========== */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: calc(100vh - 88rpx); /* 减去 tabBar 高度 */
+  background-color: #F5F7FA;
+  overflow: hidden;
+}
+
+/* ========== 货柜信息卡片 ========== */
+/* 对应：bg-card p-4 shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] */
+.cabinet-card {
+  background-color: #FFFFFF;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.cabinet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.cabinet-status-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+/* 对应：w-2 h-2 rounded-full bg-success shadow-[0_0_8px_rgba(82,196,26,0.4)] */
+.status-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: #52C41A;
+  box-shadow: 0 0 16rpx rgba(82, 196, 26, 0.4);
+}
+
+/* 对应：text-[15px] font-medium text-text-primary */
+.cabinet-id {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #1D2129;
+}
+
+/* 对应：text-xs text-text-tertiary */
+.cabinet-online {
+  font-size: 24rpx;
+  color: #86909C;
+}
+
+/* 对应：text-[13px] text-text-secondary leading-5 */
+.cabinet-location {
+  font-size: 26rpx;
+  color: #4E5969;
+  line-height: 40rpx;
+}
+
+/* ========== 快捷问题 ========== */
+/* 对应：bg-card px-4 py-3 border-t border-border */
+.quick-questions-section {
+  background-color: #FFFFFF;
+  padding: 24rpx 32rpx;
+  border-top: 2rpx solid #E5E6EB;
+  flex-shrink: 0;
+}
+
+/* 对应：text-xs text-text-tertiary mb-2.5 */
+.quick-title {
+  font-size: 24rpx;
+  color: #86909C;
+  margin-bottom: 20rpx;
+}
+
+/* 对应：flex flex-wrap gap-2 */
+.quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+/* 对应：px-4 py-2 bg-accent text-primary text-[13px] rounded-full ... shadow-sm */
+.quick-btn {
+  padding: 16rpx 32rpx;
+  background-color: #E8F3FF;
+  color: #1677FF;
+  font-size: 26rpx;
+  font-weight: 500;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 2rpx 8rpx 0 rgba(0, 0, 0, 0.04);
+  line-height: 1.5;
+}
+
+/* ========== 消息列表 ========== */
+/* 对应：flex-1 overflow-y-auto p-4 */
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32rpx;
+}
+
+.message-list-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+/* 消息行 - 默认左侧(客服)布局 */
+/* 对应：flex gap-2.5 */
+.message-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20rpx;
+}
+
+/* 用户消息 - 右侧布局 */
+/* 对应：flex-row-reverse */
+.message-row-reverse {
+  flex-direction: row-reverse;
+}
+
+/* ========== 头像 ========== */
+/* 对应：w-10 h-10 rounded-full flex-shrink-0 overflow-hidden shadow-md */
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx 0 rgba(0, 0, 0, 0.08);
+}
+
+/* 用户头像：渐变 from-[#4E5969] to-[#1D2129] */
+.avatar-user {
+  background: linear-gradient(135deg, #4E5969, #1D2129);
+}
+
+/* 客服头像：渐变 from-primary to-[#4096FF] */
+.avatar-bot {
+  background: linear-gradient(135deg, #1677FF, #4096FF);
+}
+
+/* 头像内文字：text-lg text-white */
+.avatar-text {
+  font-size: 36rpx;
+  color: #FFFFFF;
+}
+
+/* ========== 消息气泡 ========== */
+.message-bubble-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 65%;
+}
+
+/* 气泡基础 */
+.message-bubble {
+  border-radius: 32rpx;
+  padding: 28rpx;
+  box-shadow: 0 4rpx 8rpx 0 rgba(0, 0, 0, 0.04);
+}
+
+/* 用户气泡 */
+/* 对应：bg-primary text-primary-foreground shadow-[0_4px_12px_0_rgba(22,119,255,0.15)] */
+.bubble-user {
+  background-color: #1677FF;
+  color: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx 0 rgba(22, 119, 255, 0.15);
+}
+
+/* 客服气泡 */
+/* 对应：bg-card border border-border shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] */
+.bubble-bot {
+  background-color: #FFFFFF;
+  border: 2rpx solid #E5E6EB;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+/* 消息文字：text-[14px] leading-[20px] whitespace-pre-line */
+.message-text {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  white-space: pre-line;
+}
+
+/* 时间标签：text-[11px] mt-1.5 px-1 text-text-tertiary */
+.message-time {
+  font-size: 22rpx;
+  margin-top: 12rpx;
+  padding: 0 8rpx;
+  color: #86909C;
+}
+
+.time-left {
+  text-align: left;
+}
+
+.time-right {
+  text-align: right;
+}
+
+/* ========== 输入中指示器 ========== */
+/* 对应：bg-card border border-border rounded-2xl p-3.5 shadow-sm */
+.typing-indicator {
+  background-color: #FFFFFF;
+  border: 2rpx solid #E5E6EB;
+  border-radius: 32rpx;
+  padding: 28rpx;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+  display: flex;
+  gap: 12rpx;
+  align-items: center;
+}
+
+/* 对应：w-2 h-2 bg-text-tertiary rounded-full */
+.typing-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: #86909C;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.dot-1 {
+  animation-delay: 0s;
+}
+
+.dot-2 {
+  animation-delay: 0.2s;
+}
+
+.dot-3 {
+  animation-delay: 0.4s;
+}
+
+/* ========== 输入框区域 ========== */
+/* 对应：bg-card p-4 border-t border-border shadow-[0_-2px_8px_0_rgba(0,0,0,0.04)] */
+.input-area {
+  background-color: #FFFFFF;
+  padding: 32rpx;
+  border-top: 2rpx solid #E5E6EB;
+  box-shadow: 0 -4rpx 16rpx 0 rgba(0, 0, 0, 0.04);
+  flex-shrink: 0;
+}
+
+/* 对应：flex items-center gap-3 */
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+/* 对应：flex-1 px-4 py-2.5 bg-input-background rounded-xl text-[14px] outline-none */
+.message-input {
+  flex: 1;
+  padding: 20rpx 32rpx;
+  background-color: #F7F8FA;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #1D2129;
+  height: 72rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.2s ease;
+}
+
+.message-input:focus {
+  border-color: rgba(22, 119, 255, 0.2);
+  background-color: #FFFFFF;
+}
+
+/* placeholder 样式 */
+.input-placeholder {
+  color: #86909C;
+  font-size: 28rpx;
+}
+
+/* 发送按钮 */
+/* 对应：w-11 h-11 bg-primary rounded-xl shadow-[0_4px_12px_0_rgba(22,119,255,0.25)] */
+.send-btn {
+  width: 88rpx;
+  height: 88rpx;
+  background-color: #1677FF;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx 0 rgba(22, 119, 255, 0.25);
+  border: none;
+  padding: 0;
+}
+
+.send-btn:active {
+  transform: scale(0.95);
+}
+
+/* 禁用状态 */
+.send-btn-disabled {
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+/* 发送图标（替代 Send 组件，使用 Unicode 箭头） */
+.send-icon {
+  color: #FFFFFF;
+  font-size: 32rpx;
+}

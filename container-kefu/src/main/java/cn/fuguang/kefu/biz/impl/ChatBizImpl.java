@@ -13,10 +13,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 对话核心编排实现
@@ -41,8 +44,11 @@ public class ChatBizImpl implements ChatBiz {
     /** SSE 超时时间（毫秒） */
     private static final long SSE_TIMEOUT_MS = 300_000L;
 
-    /** 用于异步执行对话的线程池 */
-    private final ExecutorService executor = Executors.newCachedThreadPool();
+    /** 用于异步执行对话的线程池（有界线程池，防止 OOM） */
+    private final ExecutorService executor = new ThreadPoolExecutor(
+            4, 20, 60L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(200),
+            new ThreadPoolExecutor.CallerRunsPolicy());
 
     @Resource
     private ConversationHistoryService conversationHistoryService;
@@ -179,6 +185,24 @@ public class ChatBizImpl implements ChatBiz {
     }
 
     /**
+     * 应用关闭时优雅关闭线程池
+     */
+    @PreDestroy
+    public void shutdown() {
+        log.info("正在关闭对话执行线程池...");
+        executor.shutdown();
+        try {
+            if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
+                executor.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            executor.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
+        log.info("对话执行线程池已关闭");
+    }
+
+    /**
      * 构建系统 Prompt（从模板渲染）
      */
     private String buildSystemPrompt(String knowledgeContext) {
@@ -197,10 +221,13 @@ public class ChatBizImpl implements ChatBiz {
     }
 
     /**
-     * 构建增强的用户消息（带知识上下文）
+     * 构建增强的用户消息（将 RAG 知识上下文作为参考资料附加到用户消息）
      */
     private String buildEnhancedUserMessage(String userMessage, String knowledgeContext) {
-        return "用户问题：" + userMessage;
+        StringBuilder sb = new StringBuilder();
+        sb.append("用户问题：").append(userMessage).append("\n");
+        sb.append("参考资料：\n").append(knowledgeContext);
+        return sb.toString();
     }
 
     /**

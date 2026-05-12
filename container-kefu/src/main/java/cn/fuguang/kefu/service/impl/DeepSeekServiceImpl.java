@@ -71,7 +71,7 @@ public class DeepSeekServiceImpl implements DeepSeekService {
                         new InputStreamReader(response.bodyStream(), StandardCharsets.UTF_8))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
-                        // 跳过空行和注释行
+                        // 跳过空行
                         if (line.isEmpty()) {
                             continue;
                         }
@@ -104,13 +104,14 @@ public class DeepSeekServiceImpl implements DeepSeekService {
                 }
             }
 
+            // 流式响应正常完成后调用 onFinish（不在 finally 中，避免异常时重复 emitter.complete()）
+            onFinish.run();
+
         } catch (ContainerException e) {
             throw e;
         } catch (Exception e) {
             log.error("DeepSeek Chat Stream API 调用异常", e);
             throw ContainerException.LLM_API_ERROR.newInstance("Chat API 调用异常: " + e.getMessage());
-        } finally {
-            onFinish.run();
         }
     }
 
@@ -128,28 +129,30 @@ public class DeepSeekServiceImpl implements DeepSeekService {
 
             log.debug("调用 DeepSeek Chat Sync API, 消息数={}", messages.size());
 
-            HttpResponse response = HttpRequest.post(config.getChatUrl())
+            String responseBody;
+            try (HttpResponse response = HttpRequest.post(config.getChatUrl())
                     .header("Authorization", "Bearer " + config.getApiKey())
                     .header("Content-Type", "application/json")
                     .body(bodyJson)
                     .timeout(config.getReadTimeout())
-                    .execute();
+                    .execute()) {
 
-            String responseBody = response.body();
+                responseBody = response.body();
 
-            if (!response.isOk()) {
-                log.error("DeepSeek API 响应异常, status={}, body={}", response.getStatus(), responseBody);
-                throw ContainerException.LLM_API_ERROR.newInstance(
-                        "API 返回状态码: " + response.getStatus());
+                if (!response.isOk()) {
+                    log.error("DeepSeek API 响应异常, status={}, body={}", response.getStatus(), responseBody);
+                    throw ContainerException.LLM_API_ERROR.newInstance(
+                            "API 返回状态码: " + response.getStatus());
+                }
             }
 
             DeepSeekChatResBean res = JSON.parseObject(responseBody, DeepSeekChatResBean.class);
             if (res != null && res.getChoices() != null && !res.getChoices().isEmpty()) {
                 DeepSeekChatResBean.Choice choice = res.getChoices().get(0);
-                if (choice.getDelta() != null && choice.getDelta().getContent() != null) {
-                    return choice.getDelta().getContent();
+                // 非流式响应使用 message 字段
+                if (choice.getMessage() != null && choice.getMessage().getContent() != null) {
+                    return choice.getMessage().getContent();
                 }
-                // 非流式响应中 content 可能在 message 字段中
             }
 
             log.warn("DeepSeek Chat Sync 响应格式异常, body={}", responseBody);

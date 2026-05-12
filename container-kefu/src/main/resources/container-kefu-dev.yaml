@@ -1,0 +1,37 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/smart_container?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+deepseek:
+  api-key: "DeepSeek_API_Key"
+  base-url: https://api.deepseek.com
+  chat-endpoint: /v1/chat/completions
+  embedding-endpoint: /v1/embeddings
+  chat-model: deepseek-chat
+  embedding-model: deepseek-chat
+  connect-timeout: 10000
+  read-timeout: 120000
+  temperature: 0.7
+  max-tokens: 2048
+  embedding-dimension: 1024
+
+knowledge:
+  chunk-size: 512
+  chunk-overlap: 100
+  retrieval-top-k: 5
+  retrieval-min-similarity: 0.65
+
+conversation:
+  history-max-rounds: 10
+  history-ttl-minutes: 30

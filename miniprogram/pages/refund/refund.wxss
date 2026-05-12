@@ -1,0 +1,259 @@
+/**
+ * 退款申请页 - WXSS
+ * 样式从 RefundPage.tsx + Tailwind CSS 1:1 转换
+ * 尺寸转换：1px = 2rpx
+ */
+
+/* ========== 容器 ========== */
+.refund-container {
+  height: 100vh;
+  height: calc(100vh - 88rpx);
+  background-color: #F5F7FA;
+}
+
+.refund-scroll {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ========== 提交成功状态 ========== */
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #FFFFFF;
+}
+
+.success-icon-wrapper {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: rgba(82, 196, 26, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32rpx;
+}
+
+.success-icon {
+  font-size: 72rpx;
+  font-weight: bold;
+  color: #52C41A;
+}
+
+.success-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1D2129;
+  margin-bottom: 16rpx;
+}
+
+.success-desc {
+  font-size: 28rpx;
+  color: #4E5969;
+}
+
+/* ========== 温馨提示卡片 ========== */
+/* 对应：bg-warning/10 border border-warning/20 p-3.5 mx-4 my-4 rounded-xl shadow-sm */
+.warning-card {
+  background-color: rgba(250, 173, 20, 0.1);
+  border: 2rpx solid rgba(250, 173, 20, 0.2);
+  padding: 28rpx;
+  margin: 32rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 2rpx 8rpx 0 rgba(0, 0, 0, 0.04);
+}
+
+/* 对应：flex gap-2.5 */
+.warning-content {
+  display: flex;
+  gap: 20rpx;
+}
+
+/* 警告图标（替代 AlertCircle） */
+/* 对应：text-warning flex-shrink-0 mt-0.5 */
+.warning-icon {
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 36rpx;
+  color: #FAAD14;
+  flex-shrink: 0;
+  margin-top: 4rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 4rpx solid #FAAD14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 对应：text-[13px] text-text-secondary leading-5 */
+.warning-text {
+  flex: 1;
+  font-size: 26rpx;
+  color: #4E5969;
+  line-height: 40rpx;
+}
+
+.warning-title {
+  font-weight: 500;
+  color: #1D2129;
+  margin-bottom: 12rpx;
+}
+
+.warning-item {
+  margin-bottom: 8rpx;
+}
+
+.warning-item:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== 卡片区块 ========== */
+.section-card {
+  background-color: #FFFFFF;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1D2129;
+  margin-bottom: 24rpx;
+}
+
+/* ========== 表单输入 ========== */
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 24rpx 32rpx;
+  background-color: #F7F8FA;
+  border: 2rpx solid #E5E6EB;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #1D2129;
+  box-sizing: border-box;
+}
+
+.input-placeholder {
+  color: #86909C;
+}
+
+/* 输入提示文字 */
+.input-hint {
+  font-size: 24rpx;
+  color: #86909C;
+  margin-top: 20rpx;
+}
+
+/* ========== 选项按钮 ========== */
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 未选中 */
+.option-btn {
+  width: 100%;
+  padding: 24rpx 32rpx;
+  border-radius: 24rpx;
+  text-align: left;
+  font-size: 28rpx;
+  font-weight: 500;
+  background-color: #FAFAFA;
+  color: #1D2129;
+  border: 2rpx solid #E5E6EB;
+}
+
+/* 选中：使用 destructive（红色）主题 */
+/* 对应：bg-destructive text-destructive-foreground shadow-[0_4px_12px_0_rgba(255,77,79,0.2)] */
+.option-btn-selected {
+  background-color: #FF4D4F;
+  color: #FFFFFF;
+  border-color: #FF4D4F;
+  box-shadow: 0 8rpx 24rpx 0 rgba(255, 77, 79, 0.2);
+}
+
+/* ========== 金额输入 ========== */
+/* 对应：flex items-center gap-2 px-4 py-3 bg-input-background border border-border rounded-xl */
+.amount-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 24rpx 32rpx;
+  background-color: #F7F8FA;
+  border: 2rpx solid #E5E6EB;
+  border-radius: 24rpx;
+}
+
+/* 对应：text-lg text-text-primary font-medium */
+.amount-symbol {
+  font-size: 36rpx;
+  color: #1D2129;
+  font-weight: 500;
+}
+
+/* 对应：flex-1 bg-transparent text-[14px] text-text-primary outline-none */
+.amount-input {
+  flex: 1;
+  background: transparent;
+  font-size: 28rpx;
+  color: #1D2129;
+  height: 56rpx;
+}
+
+.amount-placeholder {
+  color: #86909C;
+}
+
+/* ========== 提交按钮 ========== */
+.submit-area {
+  padding: 0 32rpx 60rpx;
+}
+
+/* 对应：w-full h-12 bg-destructive text-destructive-foreground rounded-2xl font-medium shadow-[0_4px_12px_0_rgba(255,77,79,0.3)] */
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  background-color: #FF4D4F;
+  color: #FFFFFF;
+  border-radius: 32rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  box-shadow: 0 8rpx 24rpx 0 rgba(255, 77, 79, 0.3);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+.submit-btn-disabled {
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.submitting-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+}
+
+.spinner {
+  width: 32rpx;
+  height: 32rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}

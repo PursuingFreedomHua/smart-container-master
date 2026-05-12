@@ -1,0 +1,139 @@
+<!--
+  订单查询页 - WXML
+  包含：订单统计、订单列表、订单详情（条件渲染切换）
+-->
+<view class="order-container">
+
+  <!-- ========== 订单详情视图 ========== -->
+  <block wx:if="{{selectedOrder}}">
+    <!-- 返回按钮 -->
+    <view class="back-bar card-shadow">
+      <view class="back-btn" bindtap="handleBackToList">
+        <text class="back-arrow">‹</text>
+        <text class="back-text">返回订单列表</text>
+      </view>
+    </view>
+
+    <scroll-view class="order-scroll" scroll-y="true">
+      <!-- 订单基本信息 -->
+      <view class="section-card">
+        <view class="detail-header">
+          <text class="section-title">订单详情</text>
+          <view
+            class="status-tag"
+            style="color: {{statusConfig[selectedOrder.status].color}}; background-color: {{statusConfig[selectedOrder.status].bg}}; border-color: {{statusConfig[selectedOrder.status].borderColor}};"
+          >
+            {{statusConfig[selectedOrder.status].text}}
+          </view>
+        </view>
+        <view class="detail-list">
+          <view class="detail-row">
+            <text class="detail-label">订单号</text>
+            <text class="detail-value">{{selectedOrder.id}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">下单时间</text>
+            <text class="detail-value">{{selectedOrder.time}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">货柜编号</text>
+            <text class="detail-value">{{selectedOrder.cabinetId}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 商品清单 -->
+      <view class="section-card">
+        <text class="section-title">商品清单</text>
+        <view class="item-list">
+          <view wx:for="{{selectedOrder.items}}" wx:key="*this" class="item-row">
+            <view class="item-icon">🥤</view>
+            <view class="item-info">
+              <text class="item-name">{{item}}</text>
+              <text class="item-qty">× 1</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 金额信息 -->
+      <view class="section-card">
+        <view class="amount-section">
+          <view class="detail-row">
+            <text class="detail-label">商品总额</text>
+            <text class="detail-value">¥{{selectedOrder.amountText}}</text>
+          </view>
+          <view class="detail-row amount-total">
+            <text class="total-label">实付金额</text>
+            <text class="total-value">¥{{selectedOrder.amountText}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </block>
+
+  <!-- ========== 订单列表视图 ========== -->
+  <block wx:else>
+    <scroll-view class="order-scroll" scroll-y="true">
+      <!-- 统计信息 -->
+      <view class="stats-card card-shadow">
+        <view class="stats-row">
+          <view class="stat-item">
+            <text class="stat-num">{{stats.total}}</text>
+            <text class="stat-label">总订单</text>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <text class="stat-num text-success">{{stats.completed}}</text>
+            <text class="stat-label">已完成</text>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <text class="stat-num text-text-tertiary">{{stats.refunded}}</text>
+            <text class="stat-label">已退款</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 订单列表 -->
+      <view class="order-list">
+        <view
+          wx:for="{{orders}}"
+          wx:key="id"
+          class="order-card card-shadow"
+          data-id="{{item.id}}"
+          bindtap="handleOrderClick"
+        >
+          <!-- 订单头部 -->
+          <view class="order-card-header">
+            <view class="order-time-row">
+              <view class="order-icon-wrap">
+                <text class="order-icon">📦</text>
+              </view>
+              <text class="order-time">{{item.time}}</text>
+            </view>
+            <view
+              class="status-tag"
+              style="color: {{statusConfig[item.status].color}}; background-color: {{statusConfig[item.status].bg}}; border-color: {{statusConfig[item.status].borderColor}};"
+            >
+              {{statusConfig[item.status].text}}
+            </view>
+          </view>
+
+          <!-- 商品信息 -->
+          <view class="order-items">
+            <text class="order-items-text">{{item.itemsText}}</text>
+          </view>
+          <view class="order-cabinet">货柜编号：{{item.cabinetId}}</view>
+
+          <!-- 订单底部 -->
+          <view class="order-card-footer">
+            <text class="order-id">订单号：{{item.id}}</text>
+            <text class="order-amount">¥{{item.amountText}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </block>
+
+</view>

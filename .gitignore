@@ -1,0 +1,42 @@
+# =====================  Claude Code =====================
+.claude/
+.skills/
+
+# =====================  IDE ============================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# =====================  Maven ==========================
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# =====================  OS =============================
+.DS_Store
+Thumbs.db
+
+# =====================  Logs ===========================
+*.log
+logs/
+
+# =====================  Temp ===========================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~

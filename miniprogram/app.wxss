@@ -1,0 +1,229 @@
+/**
+ * 智能货柜客服小程序 - 全局样式
+ * 设计令牌映射自 theme.css，尺寸使用 rpx（1px = 2rpx）
+ */
+
+/* ========== 页面基础 ========== */
+page {
+  --color-background: #F5F7FA;
+  --color-foreground: #1D2129;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1D2129;
+  --color-primary: #1677FF;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #FAFAFA;
+  --color-secondary-foreground: #1D2129;
+  --color-muted: #F2F3F5;
+  --color-muted-foreground: #86909C;
+  --color-accent: #E8F3FF;
+  --color-accent-foreground: #1D2129;
+  --color-destructive: #FF4D4F;
+  --color-destructive-foreground: #FFFFFF;
+  --color-success: #52C41A;
+  --color-success-foreground: #FFFFFF;
+  --color-warning: #FAAD14;
+  --color-warning-foreground: #FFFFFF;
+  --color-border: #E5E6EB;
+  --color-input-background: #F7F8FA;
+  --color-ring: #1677FF;
+  --color-text-primary: #1D2129;
+  --color-text-secondary: #4E5969;
+  --color-text-tertiary: #86909C;
+
+  background-color: var(--color-background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  box-sizing: border-box;
+}
+
+/* ========== 盒模型统一 ========== */
+view,
+text,
+image,
+input,
+textarea,
+button,
+navigator,
+scroll-view {
+  box-sizing: border-box;
+}
+
+/* ========== 通用工具类 ========== */
+
+/* Flex布局 */
+.flex {
+  display: flex;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+
+/* 文字 */
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
+/* 溢出 */
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+/* 定位 */
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+
+/* 卡片阴影 (shadow-[0_2px_8px_0_rgba(0,0,0,0.06)]) */
+.card-shadow {
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+.card-shadow-lg {
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.08);
+}
+
+/* ========== 按钮重置 ========== */
+button {
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 28rpx;
+  background: none;
+  border: none;
+  box-sizing: border-box;
+}
+button::after {
+  border: none;
+}
+
+/* ========== 输入框重置 ========== */
+input,
+textarea {
+  box-sizing: border-box;
+}
+
+/* ========== 动画定义 ========== */
+
+/* 弹跳动画（输入中指示器） */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rpx);
+  }
+}
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* 旋转动画（提交按钮） */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* 缩放 */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* 安全区域适配 */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 单行文字省略 */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 点击态 */
+.hover-scale:active {
+  transform: scale(0.95);
+  transition: transform 0.15s ease;
+}

@@ -1,0 +1,76 @@
+<!--
+  常见问题页（FAQ）- WXML
+  包含：搜索框、分类折叠面板、联系客服入口
+-->
+
+<scroll-view class="faq-container" scroll-y="true">
+  <!-- 搜索框 -->
+  <!-- 对应：bg-card p-4 mb-4 shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] -->
+  <view class="search-section card-shadow">
+    <view class="search-wrapper">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        type="text"
+        value="{{searchKeyword}}"
+        placeholder="搜索常见问题..."
+        placeholder-class="search-placeholder"
+        bindinput="handleSearchInput"
+      />
+    </view>
+  </view>
+
+  <!-- FAQ 分类列表 -->
+  <view wx:for="{{filteredFaqData}}" wx:key="category" class="faq-category">
+    <!-- 分类标题 -->
+    <!-- 对应：bg-muted px-4 py-2.5 border-y border-border -->
+    <view class="category-header">
+      <text class="category-title">{{item.category}}</text>
+    </view>
+
+    <!-- 问题列表 -->
+    <!-- 对应：bg-card shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] -->
+    <view class="category-body card-shadow">
+      <view
+        wx:for="{{item.items}}"
+        wx:key="question"
+        wx:for-item="faqItem"
+        wx:for-index="itemIndex"
+        class="faq-item {{itemIndex === item.items.length - 1 ? 'faq-item-last' : ''}}"
+      >
+        <!-- 问题按钮 -->
+        <view
+          class="faq-question-btn"
+          data-category-index="{{index}}"
+          data-item-index="{{itemIndex}}"
+          bindtap="handleToggleExpand"
+        >
+          <text class="faq-question-text">{{faqItem.question}}</text>
+          <text class="faq-arrow {{expandedKey === (index + '-' + itemIndex) ? 'faq-arrow-expanded' : ''}}">▾</text>
+        </view>
+
+        <!-- 答案区域（条件渲染） -->
+        <view
+          wx:if="{{expandedKey === (index + '-' + itemIndex)}}"
+          class="faq-answer-area animate-fade-in"
+        >
+          <text class="faq-answer-text">{{faqItem.answer}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 无结果提示 -->
+  <view wx:if="{{filteredFaqData.length === 0}}" class="no-result">
+    <text class="no-result-text">未找到相关问题</text>
+  </view>
+
+  <!-- 联系客服 -->
+  <view class="contact-section card-shadow">
+    <text class="contact-text">没找到您的问题？</text>
+    <button class="contact-btn" bindtap="handleContactService">
+      <text class="contact-btn-icon">💬</text>
+      <text class="contact-btn-text">联系人工客服</text>
+    </button>
+  </view>
+</scroll-view>

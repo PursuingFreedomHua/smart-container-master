@@ -1,0 +1,102 @@
+<!--
+  智能客服聊天页 - WXML
+  包含：货柜信息卡片、快捷问题区、消息列表、输入框
+-->
+
+<view class="chat-container">
+  <!-- 货柜信息卡片 -->
+  <view class="cabinet-card card-shadow">
+    <view class="cabinet-header">
+      <view class="cabinet-status-row">
+        <view class="status-dot"></view>
+        <text class="cabinet-id">货柜编号: {{cabinetInfo.id}}</text>
+      </view>
+      <text class="cabinet-online">在线</text>
+    </view>
+    <view class="cabinet-location">
+      <text>📍 {{cabinetInfo.location}}</text>
+    </view>
+  </view>
+
+  <!-- 快捷问题 -->
+  <view class="quick-questions-section">
+    <view class="quick-title">常见问题</view>
+    <view class="quick-buttons">
+      <button
+        wx:for="{{quickQuestions}}"
+        wx:key="*this"
+        class="quick-btn hover-scale"
+        data-question="{{item}}"
+        bindtap="handleQuickQuestion"
+      >
+        {{item}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <scroll-view
+    class="message-list"
+    scroll-y="true"
+    scroll-into-view="{{scrollToId}}"
+    scroll-with-animation="true"
+  >
+    <view class="message-list-inner">
+      <view
+        wx:for="{{messages}}"
+        wx:key="id"
+        id="msg-{{item.id}}"
+        class="message-row {{item.type === 'user' ? 'message-row-reverse' : ''}} animate-fade-in"
+      >
+        <!-- 头像 -->
+        <view class="avatar {{item.type === 'user' ? 'avatar-user' : 'avatar-bot'}}">
+          <text class="avatar-text">{{item.type === 'user' ? '👤' : '🤖'}}</text>
+        </view>
+
+        <!-- 消息气泡 -->
+        <view class="message-bubble-wrapper">
+          <view class="message-bubble {{item.type === 'user' ? 'bubble-user' : 'bubble-bot'}}">
+            <text class="message-text">{{item.content}}</text>
+          </view>
+          <view class="message-time {{item.type === 'user' ? 'time-right' : 'time-left'}}">
+            {{item.time}}
+          </view>
+        </view>
+      </view>
+
+      <!-- 输入中指示器 -->
+      <view wx:if="{{isTyping}}" class="message-row animate-fade-in">
+        <view class="avatar avatar-bot">
+          <text class="avatar-text">🤖</text>
+        </view>
+        <view class="typing-indicator">
+          <view class="typing-dot dot-1"></view>
+          <view class="typing-dot dot-2"></view>
+          <view class="typing-dot dot-3"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入框区域 -->
+  <view class="input-area safe-area-bottom">
+    <view class="input-row">
+      <input
+        class="message-input"
+        value="{{inputValue}}"
+        placeholder="请输入您的问题..."
+        placeholder-class="input-placeholder"
+        confirm-type="send"
+        bindinput="handleInputChange"
+        bindconfirm="handleInputConfirm"
+      />
+      <button
+        class="send-btn {{inputValue ? '' : 'send-btn-disabled'}}"
+        bindtap="handleSendClick"
+        disabled="{{!inputValue}}"
+      >
+        <text class="send-icon">➤</text>
+      </button>
+    </view>
+  </view>
+</view>

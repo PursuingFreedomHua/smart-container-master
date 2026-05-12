@@ -34,14 +34,23 @@ public class DeepSeekEmbeddingServiceImpl implements DeepSeekEmbeddingService {
 
             log.debug("调用 DeepSeek Embedding API, 文本长度={}", text.length());
 
-            HttpResponse response = HttpRequest.post(config.getEmbeddingUrl())
+            String responseBody;
+            try (HttpResponse response = HttpRequest.post(config.getEmbeddingUrl())
                     .header("Authorization", "Bearer " + config.getApiKey())
                     .header("Content-Type", "application/json")
                     .body(bodyJson)
                     .timeout(config.getConnectTimeout())
-                    .execute();
+                    .execute()) {
 
-            String responseBody = response.body();
+                responseBody = response.body();
+
+                if (!response.isOk()) {
+                    log.error("DeepSeek Embedding API 响应异常, status={}, body={}", response.getStatus(), responseBody);
+                    throw ContainerException.LLM_EMBEDDING_ERROR.newInstance(
+                            "API 返回状态码: " + response.getStatus());
+                }
+            }
+
             DeepSeekEmbeddingResBean res = JSON.parseObject(responseBody, DeepSeekEmbeddingResBean.class);
 
             if (res == null || res.getData() == null || res.getData().isEmpty()) {

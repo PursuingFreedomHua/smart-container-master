@@ -1,0 +1,102 @@
+<!--
+  退款申请页 - WXML
+  包含：温馨提示、订单号输入、退款原因选择、退款金额、提交按钮
+-->
+
+<view class="refund-container">
+  <!-- 提交成功状态 -->
+  <block wx:if="{{isSuccess}}">
+    <view class="success-container">
+      <view class="success-icon-wrapper">
+        <text class="success-icon">✓</text>
+      </view>
+      <view class="success-title">退款申请已提交！</view>
+      <view class="success-desc">预计1-3个工作日到账</view>
+    </view>
+  </block>
+
+  <!-- 表单状态 -->
+  <block wx:else>
+    <scroll-view class="refund-scroll" scroll-y="true">
+      <!-- 温馨提示 -->
+      <!-- 对应：bg-warning/10 border border-warning/20 p-3.5 mx-4 my-4 rounded-xl shadow-sm -->
+      <view class="warning-card">
+        <view class="warning-content">
+          <text class="warning-icon">!</text>
+          <view class="warning-text">
+            <view class="warning-title">温馨提示</view>
+            <view class="warning-item">• 退款将原路返回至支付账户</view>
+            <view class="warning-item">• 到账时间1-3个工作日</view>
+            <view class="warning-item">• 如有疑问请联系客服</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 订单号输入 -->
+      <!-- 对应：bg-card p-4 mb-4 shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] -->
+      <view class="section-card">
+        <view class="section-title">订单号</view>
+        <input
+          class="form-input"
+          type="text"
+          value="{{orderId}}"
+          placeholder="请输入订单号（如：20240510143256）"
+          placeholder-class="input-placeholder"
+          bindinput="handleOrderIdInput"
+        />
+        <view class="input-hint">可在"订单查询"页面查看订单号</view>
+      </view>
+
+      <!-- 退款原因选择 -->
+      <view class="section-card">
+        <view class="section-title">退款原因</view>
+        <view class="option-list">
+          <button
+            wx:for="{{refundReasons}}"
+            wx:key="*this"
+            class="option-btn {{selectedReason === item ? 'option-btn-selected' : ''}}"
+            data-reason="{{item}}"
+            bindtap="handleSelectReason"
+          >
+            {{item}}
+          </button>
+        </view>
+      </view>
+
+      <!-- 退款金额 -->
+      <view class="section-card">
+        <view class="section-title">退款金额</view>
+        <view class="amount-input-wrapper">
+          <text class="amount-symbol">¥</text>
+          <input
+            class="amount-input"
+            type="digit"
+            value="{{amount}}"
+            placeholder="0.00"
+            placeholder-class="amount-placeholder"
+            bindinput="handleAmountInput"
+          />
+        </view>
+      </view>
+
+      <!-- 提交按钮 -->
+      <view class="submit-area">
+        <button
+          class="submit-btn {{isSubmitting ? 'submit-btn-disabled' : ''}}"
+          disabled="{{isSubmitting}}"
+          bindtap="handleSubmit"
+        >
+          <block wx:if="{{isSubmitting}}">
+            <view class="submitting-content">
+              <view class="spinner"></view>
+              <text>提交中...</text>
+            </view>
+          </block>
+          <block wx:else>
+            <text>提交退款申请</text>
+          </block>
+        </button>
+      </view>
+    </scroll-view>
+  </block>
+</view>

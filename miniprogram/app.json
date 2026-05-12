@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/chat/chat",
+    "pages/repair/repair",
+    "pages/refund/refund",
+    "pages/order/order",
+    "pages/faq/faq"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "智能货柜客服",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F7FA"
+  },
+  "tabBar": {
+    "color": "#86909C",
+    "selectedColor": "#1677FF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "客服"
+      },
+      {
+        "pagePath": "pages/repair/repair",
+        "text": "报修"
+      },
+      {
+        "pagePath": "pages/refund/refund",
+        "text": "退款"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/faq/faq",
+        "text": "帮助"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

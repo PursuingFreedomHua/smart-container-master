@@ -22,8 +22,11 @@ public class DeepSeekChatResBean {
      */
     @Data
     public static class Choice {
-        /** 增量内容（流式） */
+        /** 增量内容（流式响应） */
         private Delta delta;
+
+        /** 完整消息（非流式响应） */
+        private Message message;
 
         /** 结束原因：stop / length / null */
         @JSONField(name = "finish_reason")
@@ -34,11 +37,23 @@ public class DeepSeekChatResBean {
     }
 
     /**
-     * 增量内容
+     * 增量内容（流式响应使用）
      */
     @Data
     public static class Delta {
         /** 增量文本内容 */
+        private String content;
+
+        /** 角色 */
+        private String role;
+    }
+
+    /**
+     * 完整消息（非流式响应使用）
+     */
+    @Data
+    public static class Message {
+        /** 消息内容 */
         private String content;
 
         /** 角色 */

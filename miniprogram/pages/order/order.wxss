@@ -1,0 +1,308 @@
+/**
+ * 订单查询页 - WXSS
+ * 样式从 OrderPage.tsx + Tailwind CSS 1:1 转换
+ * 尺寸转换：1px = 2rpx
+ */
+
+/* ========== 容器 ========== */
+.order-container {
+  height: 100vh;
+  height: calc(100vh - 88rpx);
+  background-color: #F5F7FA;
+}
+
+.order-scroll {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ========== 返回栏 ========== */
+.back-bar {
+  background-color: #FFFFFF;
+  padding: 32rpx;
+  border-bottom: 2rpx solid #E5E6EB;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.04);
+  flex-shrink: 0;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  color: #1677FF;
+}
+
+.back-arrow {
+  font-size: 40rpx;
+  line-height: 1;
+}
+
+.back-text {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* ========== 卡片区块 ========== */
+.section-card {
+  background-color: #FFFFFF;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1D2129;
+}
+
+/* ========== 详情页头部 ========== */
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+/* ========== 状态标签 ========== */
+/* 对应：px-3 py-1 rounded-full text-xs font-medium border */
+.status-tag {
+  display: inline-block;
+  padding: 8rpx 24rpx;
+  border-radius: 50%;
+  font-size: 24rpx;
+  font-weight: 500;
+  border: 2rpx solid;
+  line-height: 1.5;
+}
+
+/* ========== 详情列表 ========== */
+.detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-label {
+  font-size: 28rpx;
+  color: #4E5969;
+}
+
+.detail-value {
+  font-size: 28rpx;
+  color: #1D2129;
+  font-weight: 500;
+}
+
+/* ========== 商品清单 ========== */
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-top: 24rpx;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+/* 对应：w-12 h-12 bg-muted rounded-xl shadow-sm */
+.item-icon {
+  width: 96rpx;
+  height: 96rpx;
+  background-color: #F2F3F5;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  box-shadow: 0 2rpx 8rpx 0 rgba(0, 0, 0, 0.04);
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  font-size: 28rpx;
+  color: #1D2129;
+  font-weight: 500;
+}
+
+.item-qty {
+  font-size: 24rpx;
+  color: #86909C;
+  margin-top: 4rpx;
+}
+
+/* ========== 金额信息 ========== */
+.amount-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.amount-total {
+  padding-top: 24rpx;
+  border-top: 2rpx solid #E5E6EB;
+  margin-top: 8rpx;
+}
+
+.total-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1D2129;
+}
+
+/* 对应：text-xl text-destructive font-semibold */
+.total-value {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #FF4D4F;
+}
+
+/* ========== 统计卡片 ========== */
+/* 对应：bg-card p-5 mb-4 shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] */
+.stats-card {
+  background-color: #FFFFFF;
+  padding: 40rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 对应：text-2xl font-semibold */
+.stat-num {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #1D2129;
+  margin-bottom: 8rpx;
+}
+
+.stat-divider {
+  width: 2rpx;
+  height: 60rpx;
+  background-color: #E5E6EB;
+}
+
+/* 对应：text-xs text-text-tertiary */
+.stat-label {
+  font-size: 24rpx;
+  color: #86909C;
+}
+
+/* ========== 订单列表 ========== */
+.order-list {
+  padding: 0 32rpx 60rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+/* 对应：bg-card p-4 rounded-xl shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] */
+.order-card {
+  background-color: #FFFFFF;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+.order-card:active {
+  transform: scale(0.98);
+  transition: transform 0.15s ease;
+}
+
+/* 订单头部 */
+.order-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.order-time-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+/* 对应：w-8 h-8 rounded-lg bg-primary/10 */
+.order-icon-wrap {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 16rpx;
+  background-color: rgba(22, 119, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-icon {
+  font-size: 28rpx;
+}
+
+/* 对应：text-xs text-text-tertiary */
+.order-time {
+  font-size: 24rpx;
+  color: #86909C;
+}
+
+/* 商品信息 */
+.order-items {
+  margin-bottom: 12rpx;
+}
+
+/* 对应：text-[14px] text-text-primary font-medium */
+.order-items-text {
+  font-size: 28rpx;
+  color: #1D2129;
+  font-weight: 500;
+}
+
+/* 对应：text-xs text-text-secondary */
+.order-cabinet {
+  font-size: 24rpx;
+  color: #4E5969;
+  margin-bottom: 24rpx;
+}
+
+/* 订单底部 */
+.order-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24rpx;
+  border-top: 2rpx solid #E5E6EB;
+}
+
+/* 对应：text-xs text-text-tertiary */
+.order-id {
+  font-size: 24rpx;
+  color: #86909C;
+}
+
+/* 对应：text-sm text-destructive font-semibold */
+.order-amount {
+  font-size: 28rpx;
+  color: #FF4D4F;
+  font-weight: 600;
+}

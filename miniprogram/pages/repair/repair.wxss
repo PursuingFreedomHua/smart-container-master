@@ -1,0 +1,241 @@
+/**
+ * 故障报修页 - WXSS
+ * 样式从 RepairPage.tsx + Tailwind CSS 1:1 转换
+ * 尺寸转换：1px = 2rpx
+ */
+
+/* ========== 容器 ========== */
+.repair-container {
+  height: 100vh;
+  height: calc(100vh - 88rpx);
+  background-color: #F5F7FA;
+}
+
+.repair-scroll {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ========== 提交成功状态 ========== */
+/* 对应：flex flex-col items-center justify-center h-full bg-card */
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #FFFFFF;
+}
+
+/* 对应：w-20 h-20 rounded-full bg-success/10 flex items-center justify-center mb-4 */
+.success-icon-wrapper {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: rgba(82, 196, 26, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32rpx;
+}
+
+/* 成功图标（替代 CheckCircle2） */
+.success-icon {
+  font-size: 72rpx;
+  font-weight: bold;
+  color: #52C41A;
+}
+
+/* 对应：text-lg font-semibold text-text-primary mb-2 */
+.success-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1D2129;
+  margin-bottom: 16rpx;
+}
+
+/* 对应：text-sm text-text-secondary */
+.success-desc {
+  font-size: 28rpx;
+  color: #4E5969;
+}
+
+/* ========== 卡片区块 ========== */
+/* 对应：bg-card p-4 mb-4 shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] */
+.section-card {
+  background-color: #FFFFFF;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.06);
+}
+
+/* 对应：text-[15px] font-semibold text-text-primary mb-3 */
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1D2129;
+  margin-bottom: 24rpx;
+}
+
+/* ========== 信息列表 ========== */
+/* 对应：space-y-2.5 */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 对应：flex justify-between items-center text-[14px] */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-row-start {
+  align-items: flex-start;
+}
+
+/* 对应：text-text-secondary */
+.info-label {
+  font-size: 28rpx;
+  color: #4E5969;
+  flex-shrink: 0;
+}
+
+/* 对应：text-text-primary font-medium */
+.info-value {
+  font-size: 28rpx;
+  color: #1D2129;
+  font-weight: 500;
+}
+
+/* 对应：text-primary font-medium */
+.info-value-primary {
+  color: #1677FF;
+  font-weight: 500;
+}
+
+/* 对应：text-right max-w-[200px] */
+.info-value-right {
+  text-align: right;
+  max-width: 400rpx;
+  word-break: break-all;
+}
+
+/* ========== 选项按钮列表 ========== */
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 未选中状态 */
+/* 对应：w-full px-4 py-3 rounded-xl text-left text-[14px] bg-secondary text-text-primary border border-border */
+.option-btn {
+  width: 100%;
+  padding: 24rpx 32rpx;
+  border-radius: 24rpx;
+  text-align: left;
+  font-size: 28rpx;
+  font-weight: 500;
+  background-color: #FAFAFA;
+  color: #1D2129;
+  border: 2rpx solid #E5E6EB;
+  line-height: 1.5;
+}
+
+/* 选中状态 */
+/* 对应：bg-primary text-primary-foreground shadow-[0_4px_12px_0_rgba(22,119,255,0.2)] */
+.option-btn-selected {
+  background-color: #1677FF;
+  color: #FFFFFF;
+  border-color: #1677FF;
+  box-shadow: 0 8rpx 24rpx 0 rgba(22, 119, 255, 0.2);
+}
+
+/* ========== 问题描述 ========== */
+/* 对应：w-full px-4 py-3 bg-input-background border border-border rounded-xl text-[14px] ... */
+.desc-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 24rpx 32rpx;
+  background-color: #F7F8FA;
+  border: 2rpx solid #E5E6EB;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #1D2129;
+  box-sizing: border-box;
+}
+
+.textarea-placeholder {
+  color: #86909C;
+  font-size: 28rpx;
+}
+
+/* ========== 联系方式输入 ========== */
+/* 对应：w-full px-4 py-3 bg-input-background border border-border rounded-xl text-[14px] ... */
+.contact-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 24rpx 32rpx;
+  background-color: #F7F8FA;
+  border: 2rpx solid #E5E6EB;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #1D2129;
+  box-sizing: border-box;
+}
+
+.input-placeholder {
+  color: #86909C;
+}
+
+/* ========== 提交按钮 ========== */
+.submit-area {
+  padding: 0 32rpx 60rpx;
+}
+
+/* 对应：w-full h-12 bg-primary text-primary-foreground rounded-2xl text-[15px] font-medium shadow-[0_4px_12px_0_rgba(22,119,255,0.3)] */
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  background-color: #1677FF;
+  color: #FFFFFF;
+  border-radius: 32rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  box-shadow: 0 8rpx 24rpx 0 rgba(22, 119, 255, 0.3);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+/* 禁用状态 */
+.submit-btn-disabled {
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+/* 提交中内容 */
+.submitting-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+}
+
+/* 旋转加载图标（替代 animate-spin） */
+.spinner {
+  width: 32rpx;
+  height: 32rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
