@@ -8,13 +8,13 @@ D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kef
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\pojo\entity\PromptTemplateEntity.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\service\ConversationHistoryService.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\biz\ChatBiz.java
-D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\service\impl\ConversationHistoryServiceImpl.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\service\impl\DeepSeekEmbeddingServiceImpl.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\pojo\bean\KnowledgeChunkBean.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\controller\ChatController.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\pojo\entity\KnowledgeDocumentEntity.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\service\DeepSeekService.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\biz\impl\SessionBizImpl.java
+D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\service\impl\InMemoryConversationHistoryServiceImpl.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\KefuExceptionHandler.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\config\DeepSeekApiConfig.java
 D:\Java\货柜项目代码\smart-container-master\smart-container-master\container-kefu\src\main\java\cn\fuguang\kefu\controller\SessionController.java

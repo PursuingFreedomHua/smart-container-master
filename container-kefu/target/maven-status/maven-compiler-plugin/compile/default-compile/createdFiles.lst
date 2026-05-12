@@ -13,8 +13,8 @@ cn\fuguang\kefu\pojo\bean\DeepSeekChatResBean.class
 cn\fuguang\kefu\service\DeepSeekEmbeddingService.class
 cn\fuguang\kefu\service\impl\PromptTemplateServiceImpl.class
 cn\fuguang\kefu\pojo\entity\PromptTemplateEntity.class
-cn\fuguang\kefu\service\impl\ConversationHistoryServiceImpl.class
 cn\fuguang\kefu\biz\KnowledgeBiz.class
+cn\fuguang\kefu\service\impl\InMemoryConversationHistoryServiceImpl.class
 cn\fuguang\kefu\mapper\KnowledgeDocumentMapper.class
 cn\fuguang\kefu\service\impl\DeepSeekEmbeddingServiceImpl.class
 cn\fuguang\kefu\biz\ChatBiz.class
